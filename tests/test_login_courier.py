@@ -3,6 +3,7 @@ import pytest
 import data
 from scooter_api import ScooterApi
 from helper import Helper
+
 class TestLoginCounter:
     @allure.title("Логин курьера: успешная авторизация")
     @allure.description("Проверка, что курьер может авторизоваться и возвращается id")
@@ -34,7 +35,7 @@ class TestLoginCounter:
             response = ScooterApi.login_courier(payload)
         with allure.step("Проверка кода ответа и сообщения об ошибке"):
             assert response.status_code == 400
-            assert response.json()["message"] == "Недостаточно данных для входа"
+            assert response.json()["message"] == data.LOGIN_MISSING_DATA
 
     @pytest.mark.parametrize("modify_field", ["login", "password"])
     @allure.title("Логин курьера: некорректные данные")
@@ -51,7 +52,7 @@ class TestLoginCounter:
             response = ScooterApi.login_courier(payload)
         with allure.step("Проверка кода ответа и сообщения об ошибке"):
             assert response.status_code == 404
-            assert response.json()["message"] == "Учетная запись не найдена"
+            assert response.json()["message"] == data.ACCOUNT_NOT_FOUND
 
     @allure.title("Логин курьера: несуществующий пользователь")
     @allure.description("Проверка, что авторизация под несуществующим пользователем возвращает ошибку")
@@ -61,5 +62,5 @@ class TestLoginCounter:
             response = ScooterApi.login_courier(payload)
         with allure.step("Проверка кода ответа и сообщения об ошибке"):
             assert response.status_code == 404
-            assert response.json()["message"] == "Учетная запись не найдена"
+            assert response.json()["message"] == data.ACCOUNT_NOT_FOUND
 

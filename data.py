@@ -33,3 +33,9 @@ BLACK_AND_GRAY = {
     "comment": "I will become your partner Asiro",
     "color": None
 }
+
+
+COURIER_LOGIN_ALREADY_USED = "Этот логин уже используется. Попробуйте другой."
+COURIER_CREATION_MISSING_DATA = "Недостаточно данных для создания учетной записи"
+LOGIN_MISSING_DATA = "Недостаточно данных для входа"
+ACCOUNT_NOT_FOUND = "Учетная запись не найдена"
